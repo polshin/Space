@@ -1,0 +1,38 @@
+import grails.core.*
+import grails.util.*
+import grails.plugins.*
+import java.lang.String;
+import org.grails.core.artefact.*
+
+model {
+    GrailsApplication grailsApplication
+    GrailsPluginManager pluginManager
+    CurrencyService currencyService
+    List<Map> allData;
+}
+
+json {
+    chart(
+            caption: "EUR and USD currency",
+            numdivlines: "4",
+            showvalues: "0",
+            numvdivlines: "22",
+            anchorradius: "2",
+            labeldisplay: "rotate",
+            slantlabels: "1",
+            linethickness: "2",
+            palette: "4",
+            connectnulldata: "0",
+            xtlabelmanagement: "0",
+            showborder: "0"
+    )
+    categories(["FIRST"]){
+        category tmpl.label("model", allData)
+    }
+
+    dataset(['EUR','USD']){
+        seriesname it
+        data it=='USD'?tmpl.usd("model", allData):tmpl.eur("model", allData)
+    }
+
+}

@@ -1,0 +1,14 @@
+import grails.core.*
+import grails.util.*
+import grails.plugins.*
+import java.lang.String;
+import org.grails.core.artefact.*
+model {
+    Map model
+}
+
+json {
+    label model["DATE"]
+    stepSkipped false
+    appliedSmartLabel true
+}

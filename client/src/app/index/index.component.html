@@ -1,0 +1,36 @@
+<div class="svg" role="presentation">
+</div>
+
+<div id="content" role="main">
+  <tabs>
+    <tab tabTitle="Graphic">
+      <fusioncharts
+              [id]="id"
+              [width]="width"
+              [height]="height"
+              [type]="type"
+              [dataFormat]="dataFormat"
+              [dataSource]="data"
+      ></fusioncharts>
+    </tab>
+    <tab tabTitle="Table">
+      <table datatable class="table row-border hover" *ngIf="this.data">
+        <thead>
+        <tr>
+          <th>DATE</th>
+          <th>USD</th>
+          <th>EUR</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let rec of this.data.dataset[0].data;let i = index">
+          <td>{{this.data.categories[0].category[i].label}}</td>
+          <td>{{this.data.dataset[1].data[i].value}}</td>
+          <td>{{rec.value}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </tab>
+    </tabs>
+
+</div>
